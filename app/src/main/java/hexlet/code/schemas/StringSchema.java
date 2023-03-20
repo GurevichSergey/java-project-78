@@ -1,30 +1,18 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
-public class StringSchema {
-    private List<Predicate> conditions = new ArrayList<>();
+public class StringSchema extends BaseSchema {
 
     public StringSchema required() {
-        conditions.add(condition -> condition instanceof String && !"".equals(condition) && conditions != null);
+        addConditions(condition -> condition instanceof String && !"".equals(condition) && condition != null);
         return this;
     }
     public StringSchema minLength(int stringLength) {
-        conditions.add(condition -> condition.toString().length() >= stringLength);
+        addConditions(condition -> condition.toString().length() >= stringLength);
         return this;
     }
     public StringSchema contains(String string) {
-        conditions.add(condition -> condition.toString().contains(string));
+        addConditions(condition -> condition.toString().contains(string));
         return this;
     }
-    public boolean isValid(Object object) {
-        for (var condition : conditions) {
-            if (!condition.test(object)) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 }
