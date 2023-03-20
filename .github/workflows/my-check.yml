@@ -1,4 +1,4 @@
-name: my-check
+name: Java CI
 
 on: 
   - push
