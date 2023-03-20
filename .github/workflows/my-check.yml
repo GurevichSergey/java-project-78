@@ -1,4 +1,4 @@
-name: my-check
+name: Java CI
 
 on: 
   - push
@@ -21,6 +21,7 @@ jobs:
       - name: Gradle Build Action
         uses: gradle/gradle-build-action@v2
         with:
+          gradle-version: 7.4.2
           arguments: build
           build-root-directory: app
       - name: Publish code coverage
