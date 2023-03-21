@@ -7,10 +7,10 @@ import java.util.function.Predicate;
 
 public class BaseSchema {
     private List<Predicate> conditions = new ArrayList<>();
-    public void addConditions(Predicate condition) {
+    public final void addConditions(Predicate condition) {
         conditions.add(condition);
     }
-    public boolean isValid(Object object) {
+    public final boolean isValid(Object object) {
         for (var condition : conditions) {
             if (!condition.test(object)) {
                 return false;
