@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ValidatorTest {
     private final Validator v = new Validator();
     @Test
-    public void stringSchemaTest() throws Exception {
+    public void stringSchemaTest() {
         StringSchema schema = v.string();
         assertTrue(schema.isValid(""));
         assertTrue(schema.isValid(null));
@@ -31,7 +31,7 @@ public class ValidatorTest {
         assertFalse(schema.isValid("what does the fox say"));
     }
     @Test
-    public void intSchemaTest() throws Exception {
+    public void intSchemaTest() {
         NumberSchema schema = v.number();
         assertTrue(schema.isValid(null));
         assertTrue(schema.positive().isValid(null));
@@ -48,12 +48,12 @@ public class ValidatorTest {
         assertFalse(schema.isValid(11));
     }
     @Test
-    public void mapSchemaTest() throws Exception {
+    public void mapSchemaTest() {
         MapSchema schema = v.map();
         assertTrue(schema.isValid(null));
         schema.required();
         assertFalse(schema.isValid(null));
-        assertTrue(schema.isValid(new HashMap()));
+        assertTrue(schema.isValid(new HashMap<>()));
         Map<String, String> data = new HashMap<>();
         data.put("key1", "value1");
         assertTrue(schema.isValid(data));
@@ -63,7 +63,7 @@ public class ValidatorTest {
         assertTrue(schema.isValid(data));
     }
     @Test
-    public void mapSchemaShapeTest() throws Exception {
+    public void mapSchemaShapeTest() {
         MapSchema schema = v.map();
         Map<String, BaseSchema> schemas = new HashMap<>();
         schemas.put("name", v.string().required());
