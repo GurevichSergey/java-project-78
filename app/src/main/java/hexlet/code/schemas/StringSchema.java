@@ -3,7 +3,7 @@ package hexlet.code.schemas;
 public class StringSchema extends BaseSchema {
 
     public StringSchema required() {
-        addConditions(condition -> condition instanceof String && !"".equals(condition) && condition != null);
+        addConditions(condition -> condition instanceof String && !"".equals(condition));
         return this;
     }
     public StringSchema minLength(int stringLength) {

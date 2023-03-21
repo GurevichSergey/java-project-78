@@ -29,6 +29,9 @@ public class ValidatorTest {
         assertTrue(schema.contains("what").isValid("what does the fox say"));
         assertFalse(schema.contains("whatthe").isValid("what does the fox say"));
         assertFalse(schema.isValid("what does the fox say"));
+        assertTrue(schema.minLength(2).isValid("whatthe"));
+        assertTrue(schema.minLength(1).isValid("whatthe"));
+        assertFalse(schema.minLength(9).isValid("whatthe"));
     }
     @Test
     public void intSchemaTest() {
