@@ -14,5 +14,4 @@ public class NumberSchema extends BaseSchema {
         addConditions(condition -> (Integer) condition >= begin && (Integer) condition <= end);
         return this;
     }
-
 }
