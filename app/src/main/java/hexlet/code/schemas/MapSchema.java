@@ -11,4 +11,17 @@ public class MapSchema extends BaseSchema {
         addConditions(condition -> condition instanceof Map && ((Map) condition).size() == size);
         return this;
     }
+    public MapSchema shape(Map<String, BaseSchema> schemasMap) {
+        addConditions(map -> checkingValid((Map<String, BaseSchema>) map, schemasMap));
+        return this;
+    }
+    public boolean checkingValid(Map<String, BaseSchema> baseMap, Map<String, BaseSchema> shamedMap) {
+        for (var pair : shamedMap.entrySet()) {
+            var key = pair.getKey();
+            if (!pair.getValue().isValid(baseMap.get(key))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
